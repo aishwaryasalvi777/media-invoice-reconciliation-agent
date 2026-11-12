@@ -1,0 +1,5 @@
+# Private project notes, private Claude instructions and the "document it" skill.
+# Kept on this machine only, not in the repo.
+documentation/
+CLAUDE.local.md
+.claude/skills/document-it/
