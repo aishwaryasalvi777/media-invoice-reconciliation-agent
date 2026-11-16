@@ -3,3 +3,9 @@
 documentation/
 CLAUDE.local.md
 .claude/skills/document-it/
+
+# Python: installed libraries and temporary files. Rebuilt from uv.lock, so not committed.
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/

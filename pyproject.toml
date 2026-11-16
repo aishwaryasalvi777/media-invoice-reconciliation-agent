@@ -1,0 +1,26 @@
+[project]
+name = "invoice-recon"
+version = "0.1.0"
+description = "Checks publisher bills against the media plan, delivery data and contract rules"
+readme = "README.md"
+authors = [
+    { name = "aishwaryasalvi777" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "openpyxl>=3.1.5",
+    "pandas>=3.1.1",
+    "pydantic>=2.14.3",
+]
+
+[build-system]
+requires = ["uv_build>=0.13.8,<0.14.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

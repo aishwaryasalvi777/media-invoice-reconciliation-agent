@@ -10,7 +10,16 @@ An agent that checks publisher bills for an ad agency. The client (Pepsi) pays t
 It then decides one of: `approve`, `pay_less`, `dispute` or `send_to_human`.
 
 ## Status
-Early stage. Only the sample data exists. There is no code yet, so there are no build, test or run commands.
+Early stage. Project setup and sample data are ready. No reconciliation logic yet.
+
+## Commands
+- `uv sync`: install Python 3.12 and the exact library versions from `uv.lock`
+- `uv run pytest`: run the tests
+- `uv add <library>` / `uv add --dev <library>`: add a library (updates `pyproject.toml` and `uv.lock`)
+
+## Layout
+- `src/invoice_recon/`: the code
+- `tests/`: the tests
 
 ## Data: `data/sample/`
 Read [data/sample/README.md](data/sample/README.md) before working on anything that touches the data. It covers the files, the invoice formats, the contract rules and the 13 planted problems.
