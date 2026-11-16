@@ -9,6 +9,10 @@ Give a short recap of this session, from the first message until now. Reply in c
 
 ## Steps
 
+0. **New chat with no earlier work in it?** Then summarise the previous session instead: read the
+   latest entry in `documentation/SESSION_LOG.md` and the "Where we are" section of
+   `documentation/PROGRESS.md`, and use them for the sections below. Finish with the next step
+   from `PROGRESS.md`.
 1. Look back over the whole conversation. Collect:
    - what we **did** (files made or changed, commands run, things set up)
    - what we **decided**, with the reason in a few words
