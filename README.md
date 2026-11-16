@@ -19,6 +19,8 @@ Needs [uv](https://docs.astral.sh/uv/) (installs Python and all libraries).
 ```bash
 uv sync          # install Python 3.12 and the exact library versions from uv.lock
 uv run pytest    # run the tests
+uv run pre-commit install   # once: run code checks automatically before each commit
+cp .env.example .env        # optional: your private settings (never committed)
 ```
 
 ## Layout

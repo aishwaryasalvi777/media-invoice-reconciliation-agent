@@ -11,6 +11,7 @@ dependencies = [
     "openpyxl>=3.1.5",
     "pandas>=3.1.1",
     "pydantic>=2.14.3",
+    "pydantic-settings>=2.16.3",
 ]
 
 [build-system]
@@ -19,8 +20,35 @@ build-backend = "uv_build"
 
 [dependency-groups]
 dev = [
+    "mypy>=2.4.1",
+    "pandas-stubs>=3.1.0.261029",
+    "pre-commit>=4.7.0",
     "pytest>=9.2.0",
+    "ruff>=0.17.5",
 ]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+# Ruff: checks code for common mistakes and fixes its layout.
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+extend-exclude = ["data"]
+
+[tool.ruff.lint]
+select = [
+    "E", "W",  # basic style problems
+    "F",       # real mistakes: unused variables, undefined names
+    "I",       # imports in a standard order
+    "B",       # common bug patterns
+    "UP",      # use modern Python 3.12 style
+    "SIM",     # code that can be written more simply
+]
+
+# mypy: checks that every function gets and returns the right kind of data.
+[tool.mypy]
+python_version = "3.12"
+strict = true
+files = ["src", "tests"]
+plugins = ["pydantic.mypy"]  # teaches mypy how pydantic forms and settings work

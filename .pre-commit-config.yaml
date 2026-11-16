@@ -1,0 +1,32 @@
+# Checks that run automatically before every commit.
+# A failing check stops the commit, so mistakes never get saved.
+# Ruff and mypy run through uv, so they use the exact versions in uv.lock.
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-added-large-files   # blocks files over 500 KB
+      - id: detect-private-key        # blocks secret keys
+      - id: check-toml
+      - id: check-yaml
+      - id: check-merge-conflict      # blocks leftover "<<<<<<<" merge markers
+
+  - repo: local
+    hooks:
+      - id: ruff-check
+        name: ruff (mistakes)
+        entry: uv run ruff check --fix
+        language: system
+        types: [python]
+      - id: ruff-format
+        name: ruff (layout)
+        entry: uv run ruff format
+        language: system
+        types: [python]
+      - id: mypy
+        name: mypy (types)
+        entry: uv run mypy
+        language: system
+        types: [python]
+        pass_filenames: false

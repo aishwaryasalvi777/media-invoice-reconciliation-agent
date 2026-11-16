@@ -9,3 +9,8 @@ CLAUDE.local.md
 __pycache__/
 *.pyc
 .pytest_cache/
+
+# Private settings and secrets. Only the template .env.example is committed.
+.env
+.env.*
+!.env.example

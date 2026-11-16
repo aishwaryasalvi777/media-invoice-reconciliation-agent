@@ -13,17 +13,17 @@ import pandas as pd
 DATA = Path(__file__).resolve().parent.parent / "data" / "sample"
 
 
-def test_package_can_be_loaded():
+def test_package_can_be_loaded() -> None:
     import invoice_recon
 
     assert invoice_recon.__doc__
 
 
-def test_python_version_is_3_12():
+def test_python_version_is_3_12() -> None:
     assert sys.version_info[:2] == (3, 12)
 
 
-def test_libraries_can_read_sample_data():
+def test_libraries_can_read_sample_data() -> None:
     media_plan = pd.read_excel(DATA / "media_plan.xlsx")
     assert len(media_plan) == 40
 

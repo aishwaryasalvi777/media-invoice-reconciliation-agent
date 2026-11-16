@@ -16,6 +16,11 @@ Early stage. Project setup and sample data are ready. No reconciliation logic ye
 - `uv sync`: install Python 3.12 and the exact library versions from `uv.lock`
 - `uv run pytest`: run the tests
 - `uv add <library>` / `uv add --dev <library>`: add a library (updates `pyproject.toml` and `uv.lock`)
+- `uv run ruff check .` / `uv run ruff format .`: find mistakes / fix code layout
+- `uv run mypy`: check data types (strict mode, covers `src/` and `tests/`)
+- `uv run pre-commit run --all-files`: run every commit check by hand. They also run automatically on each `git commit`; a failure stops the commit.
+- After cloning, run `uv run pre-commit install` once to switch the automatic checks on.
+- Settings: copy `.env.example` to `.env` (optional; the defaults work). All settings live in `src/invoice_recon/config.py` and start with `INVOICE_RECON_`.
 
 ## Layout
 - `src/invoice_recon/`: the code
@@ -29,6 +34,7 @@ Read [data/sample/README.md](data/sample/README.md) before working on anything t
 - The sample dataset is fixed. Don't regenerate it or edit it.
 
 ## Hard rules
+- **Never write secrets (API keys, passwords) in code or in any committed file.** They go only in the private `.env` file or environment variables, read through `config.py`. `.env.example` holds placeholder values only.
 - **The system must never read `data/sample/answer_key.csv`.** Only tests may use it, to score the agent's answers. Never use it as an input, a hint or a lookup.
 - A purchase order number covers a whole campaign at one publisher, not a single plan line. Don't match bill lines using the purchase order number alone.
 - An invoice that differs from the plan isn't automatically wrong. Some differences are allowed by the contract (for example, Hulu February over-delivery within the contract cap should be approved).
