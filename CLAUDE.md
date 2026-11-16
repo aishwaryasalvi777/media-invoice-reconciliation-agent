@@ -20,10 +20,15 @@ Early stage. Project setup and sample data are ready. No reconciliation logic ye
 - `uv run mypy`: check data types (strict mode, covers `src/` and `tests/`)
 - `uv run pre-commit run --all-files`: run every commit check by hand. They also run automatically on each `git commit`; a failure stops the commit.
 - After cloning, run `uv run pre-commit install` once to switch the automatic checks on.
+- `uv run jupyter lab`: open the walkthrough notebook in the browser (`notebooks/walkthrough.ipynb`).
 - Settings: copy `.env.example` to `.env` (optional; the defaults work). All settings live in `src/invoice_recon/config.py` and start with `INVOICE_RECON_`.
 
 ## Layout
 - `src/invoice_recon/`: the code
+  - `config.py`: all settings
+  - `models.py`: the 5 forms (PlanLine, DeliveryRecord, InvoiceLine, ContractTerms, Result). Money is always `Decimal`, never `float`.
+  - `describe.py`: `blank_form(Form)` lists a form's fields, kinds, rules and meanings (used by the notebook). Every form field needs a one-line note in `models.py`; a test enforces it.
+  - `loaders.py`: `load_reference_data()` reads the media plan, delivery files and contracts (every cell as text), checks the files agree, and returns a `ReferenceData` bundle with lookups. Raises `DataLoadError` listing every problem.
 - `tests/`: the tests
 
 ## Data: `data/sample/`
@@ -34,6 +39,7 @@ Read [data/sample/README.md](data/sample/README.md) before working on anything t
 - The sample dataset is fixed. Don't regenerate it or edit it.
 
 ## Hard rules
+- **The notebook holds no real logic.** `notebooks/walkthrough.ipynb` only calls code from `src/invoice_recon/` (plus small display code), keeps its outputs, and gets one new section per finished step.
 - **Never write secrets (API keys, passwords) in code or in any committed file.** They go only in the private `.env` file or environment variables, read through `config.py`. `.env.example` holds placeholder values only.
 - **The system must never read `data/sample/answer_key.csv`.** Only tests may use it, to score the agent's answers. Never use it as an input, a hint or a lookup.
 - A purchase order number covers a whole campaign at one publisher, not a single plan line. Don't match bill lines using the purchase order number alone.

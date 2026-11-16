@@ -21,6 +21,7 @@ uv sync          # install Python 3.12 and the exact library versions from uv.lo
 uv run pytest    # run the tests
 uv run pre-commit install   # once: run code checks automatically before each commit
 cp .env.example .env        # optional: your private settings (never committed)
+uv run jupyter lab          # see each step working on real data: notebooks/walkthrough.ipynb
 ```
 
 ## Layout
