@@ -27,6 +27,7 @@ Early stage. Project setup and sample data are ready. No reconciliation logic ye
 - `src/invoice_recon/`: the code
   - `config.py`: all settings
   - `models.py`: the 5 forms (PlanLine, DeliveryRecord, InvoiceLine, ContractTerms, Result). Money is always `Decimal`, never `float`.
+  - `money.py`: the money rules. `to_cents()` rounds half up to whole cents, `cost_of_views()` = views × price per 1,000, `total()` adds lines that are already rounded. **All money math goes through these functions.**
   - `describe.py`: `blank_form(Form)` lists a form's fields, kinds, rules and meanings (used by the notebook). Every form field needs a one-line note in `models.py`; a test enforces it.
   - `loaders.py`: `load_reference_data()` reads the media plan, delivery files and contracts (every cell as text), checks the files agree, and returns a `ReferenceData` bundle with lookups. Raises `DataLoadError` listing every problem.
 - `tests/`: the tests

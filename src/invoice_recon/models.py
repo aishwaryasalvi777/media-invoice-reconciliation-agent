@@ -26,6 +26,8 @@ from pydantic import (
     model_validator,
 )
 
+from invoice_recon.money import cost_of_views
+
 # ---------- shared building blocks ----------
 
 
@@ -134,9 +136,7 @@ class PlanLine(Form):
         cancelled = self.status is PlanStatus.CANCELLED
         if cancelled != (self.cancelled_effective_date is not None):
             raise ValueError("a cancelled line needs a cancelled_effective_date, and only then")
-        expected = (self.planned_impressions * self.price_per_1000_views / 1000).quantize(
-            Decimal("0.01")
-        )
+        expected = cost_of_views(self.planned_impressions, self.price_per_1000_views)
         if self.planned_cost != expected:
             raise ValueError(
                 f"planned_cost {self.planned_cost} doesn't equal views x price = {expected}"
