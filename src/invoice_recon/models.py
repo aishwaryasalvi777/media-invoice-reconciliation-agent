@@ -93,6 +93,8 @@ class Cause(StrEnum):
     MATH_ERROR = "math_error"
     RATE_MISMATCH = "rate_mismatch"
     NO_MATCHING_ORDER = "no_matching_order"
+    UNEXPLAINED_DIFFERENCE = "unexplained_difference"
+    """Safety net: the amount is wrong but no rule explains why. Always goes to a human."""
 
 
 class Decision(StrEnum):
